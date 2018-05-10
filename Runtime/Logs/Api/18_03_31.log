@@ -1,0 +1,55 @@
+[ 2018-03-31T00:10:05+08:00 ] 59.51.81.136 /blog/index.php/Api/Index/oauth/type/sina?code=d2eee8d6d217c0ea5e22517cd8385608
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000384s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000660s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0020s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0017s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0014s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE ou.id NOT IN ('1') AND c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0014s ]
+NOTIC: [2] Invalid argument supplied for foreach() /data/home/bxu2713680059/htdocs/blog/Application/Common/Model/CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: error_code /data/home/bxu2713680059/htdocs/blog/Application/Api/Controller/IndexController.class.php 第 92 行.
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `lzm_oauth_user` WHERE `openid` = '2667226133' LIMIT 1   [ RunTime:0.0017s ]
+SQL: UPDATE `lzm_oauth_user` SET `uid`='0',`type`='2',`nickname`='爵特猛先生',`head_img`='http://tva3.sinaimg.cn/crop.0.0.1080.1080.180/9efaa415jw8eopegnx22ej20u00u0434.jpg',`openid`='2667226133',`access_token`='2.00236VuCajlt6C26b82383410gQGvg',`last_login_time`='1522426205',`last_login_ip`='59.51.81.136',`login_times`=login_times+1 WHERE `openid` = '2667226133' [ RunTime:0.0041s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE `openid` = '2667226133' LIMIT 1   [ RunTime:0.0015s ]
+
+[ 2018-03-31T00:11:05+08:00 ] 101.71.55.140 /blog/index.php/Api/Index/oauth/type/sina?code=d2eee8d6d217c0ea5e22517cd8385608
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000489s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000694s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000759s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0018s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0015s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0012s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE ou.id NOT IN ('1') AND c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0013s ]
+NOTIC: [2] Invalid argument supplied for foreach() /data/home/bxu2713680059/htdocs/blog/Application/Common/Model/CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: access_token /data/home/bxu2713680059/htdocs/blog/ThinkPHP/Library/Org/ThinkSDK/sdk/SinaSDK.class.php 第 57 行.
+ERR: 获取新浪微博ACCESS_TOKEN出错：invalid_grant
+

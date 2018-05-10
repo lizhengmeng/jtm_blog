@@ -1,0 +1,1541 @@
+[ 2018-03-30T00:21:30+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/25.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000475s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000594s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000655s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0022s ]
+SQL: UPDATE `lzm_article` SET `aid`='25',`cid`='30',`title`='MySQL主从复制',`author`='爵特猛',`keywords`='主从复制，MySQL',`description`='MySQL主从复制，同步数据库',`is_original`='1',`is_top`='1',`is_show`='1',`content`='&lt;p&gt;主服务器A:192.168.0.1&lt;br/&gt;&lt;br/&gt;从服务器B:192.168.0.2&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;在主服务器新建一个从账号锁定IP&lt;br/&gt;GRANT REPLICATION SLAVE,RELOAD,SUPER ON *.* TO backup@&amp;#39;192.168.0.2&amp;#39; IDENTIFIED BY &amp;#39;q123456&amp;#39;;&lt;br/&gt;//账户名：backup，指定客户端：192.168.0.2，密码：q123456&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;更新sql数据库&lt;br/&gt;mysql mysql -u&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;在从服务器上运行测试是否能登陆主服务器&lt;br/&gt;F:\\phpStudy\\MySQL\\bin\\mysql -h192.168.0.1 -ubackup -pq123456;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;对主服务器的配置进行修改，&lt;br/&gt;打开mysql/my.ini文件，在[mysqld]下面添加如下内容：&lt;br/&gt;server-id=1&lt;br/&gt;log-bin=&amp;quot;D:/phpStudy/MySQL/log/log-bin.log&amp;quot;&lt;br/&gt;binlog-do-db =&amp;quot;slsix&amp;quot;&lt;br/&gt;binlog-ignore-db=&amp;quot;mysql&amp;quot;&lt;br/&gt;expire_logs_days = 2&amp;nbsp; //超过两天的二进制日志会被自动删除&lt;br/&gt;（&amp;nbsp;&amp;nbsp; &amp;nbsp;主：binlog-do-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可&lt;br/&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;主：binlog-ignore-db=不需要复制的数据库苦命，如果复制多个数据库，重复设置这个选项即可&lt;br/&gt;）&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;A查看主服务器的状态&lt;br/&gt;mysql&amp;gt;show master status;&lt;br/&gt;&lt;br/&gt;log-bin.000001 |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 107 | demo&lt;br/&gt;&lt;br/&gt;对B服 务器的配置进行修改，&lt;br/&gt;打开mysql/my.ini文件，在[mysqld]下面添加如下内容：&lt;br/&gt;server-id = 2&lt;br/&gt;replicate-do-db =&amp;quot;slsix&amp;quot;&lt;br/&gt;（&amp;nbsp;&amp;nbsp; &amp;nbsp;从：replicate-do-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可&lt;br/&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;从：replicate-ignore-db=不需要复制的数据库名，如果要忽略多个数据库，重复设置这个选项即可&lt;br/&gt;）&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;B停止slave的服务!!!!!&lt;br/&gt;mysql&amp;gt;stop slave;&lt;br/&gt;&lt;br/&gt;配置从服务器Slave：&lt;br/&gt;&amp;nbsp;&amp;nbsp; mysql&amp;gt;change master to master_host=&amp;#39;192.168.0.1&amp;#39;,master_user=&amp;#39;backup&amp;#39;,master_password=&amp;#39;q123456&amp;#39;,&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; master_log_file=&amp;#39;log-bin.000001&amp;#39;,master_log_pos=107;&amp;nbsp;&amp;nbsp; //注意不要断开，107数字前后无单引号。&lt;br/&gt;&lt;br/&gt;//B启动同步数据库的线程&lt;br/&gt;mysql&amp;gt;start slave;&lt;br/&gt;&lt;br/&gt;在B查看同步状况&lt;br/&gt;检查从服务器复制功能状态：&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp; mysql&amp;gt; show slave status\\G;&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp; *************************** 1. row ***************************&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Slave_IO_State: Waiting for master to send event&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Master_Host: 192.168.0.1&amp;nbsp; //主服务器地址&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Master_User: mysync&amp;nbsp;&amp;nbsp; //授权帐户名，尽量避免使用root&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Master_Port: 3306&amp;nbsp;&amp;nbsp;&amp;nbsp; //数据库端口，部分版本没有此行&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Connect_Retry: 60&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Master_Log_File: mysql-bin.000001&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Read_Master_Log_Pos: 600&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; //#同步读取二进制日志的位置，大于等于Exec_Master_Log_Pos&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Relay_Log_File: ddte-relay-bin.000003&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Relay_Log_Pos: 251&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Relay_Master_Log_File: mysql-bin.000001&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Slave_IO_Running: Yes&amp;nbsp;&amp;nbsp;&amp;nbsp; //此状态必须YES&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Slave_SQL_Running: Yes&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; //此状态必须YES&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ......&lt;br/&gt;&lt;br/&gt;注：Slave_IO及Slave_SQL进程必须正常运行，即YES状态，否则都是错误的状态(如：其中一个NO均属错误)。&lt;img src=&quot;/blog/Upload/image/ueditor/20180330/1522340485876141.png&quot; title=&quot;爵特猛博客&quot; alt=&quot;爵特猛博客&quot;/&gt;&lt;/p&gt;' WHERE `aid` = 25 [ RunTime:0.0065s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0017s ]
+SQL: DELETE FROM `lzm_article_tag` WHERE `aid` = 25 [ RunTime:0.0039s ]
+SQL: INSERT INTO `lzm_article_tag` (`aid`,`tid`) VALUES ('25','22') [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0018s ]
+SQL: DELETE FROM `lzm_article_pic` WHERE `aid` = 25 [ RunTime:0.0014s ]
+ERR: 错误的颜色值
+
+[ 2018-03-30T00:21:34+08:00 ] 59.51.81.136 /blog/index.php/Admin/Admin/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000503s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000597s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000706s ]
+SQL: SHOW COLUMNS FROM `lzm_admin` [ RunTime:0.0021s ]
+SQL: SELECT * FROM `lzm_admin`  [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000059s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000117s ]
+NOTIC: [8] Undefined index: is_admin /data/home/bxu2713680059/htdocs/blog/Runtime/Cache/Admin/4d8324af19d98ad4d454de3b3e0d7e82.php 第 35 行.
+NOTIC: [8] Undefined index: is_admin /data/home/bxu2713680059/htdocs/blog/Runtime/Cache/Admin/4d8324af19d98ad4d454de3b3e0d7e82.php 第 35 行.
+NOTIC: [8] Undefined variable: page /data/home/bxu2713680059/htdocs/blog/Runtime/Cache/Admin/4d8324af19d98ad4d454de3b3e0d7e82.php 第 40 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010321s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010397s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000315s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000354s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000754s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000801s ]
+
+[ 2018-03-30T00:21:35+08:00 ] 59.51.81.136 /blog/index.php/Admin/Config/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000479s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000733s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000812s ]
+SQL: SHOW COLUMNS FROM `lzm_config` [ RunTime:0.0018s ]
+SQL: SELECT `name`,`value` FROM `lzm_config`  [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000232s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000294s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018576s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018627s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000283s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000320s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001049s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001140s ]
+
+[ 2018-03-30T00:21:47+08:00 ] 59.51.81.136 /blog/index.php/Admin/Config/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000451s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000636s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000727s ]
+SQL: SHOW COLUMNS FROM `lzm_config` [ RunTime:0.0018s ]
+SQL: UPDATE `lzm_config` SET `value`='1' WHERE `name` = 'WEB_STATUS' [ RunTime:0.0040s ]
+SQL: UPDATE `lzm_config` SET `value`='网站升级中，请稍后访问。' WHERE `name` = 'WEB_CLOSE_WORD' [ RunTime:0.0036s ]
+SQL: UPDATE `lzm_config` SET `value`='桂ICP备17006323号-1' WHERE `name` = 'WEB_ICP_NUMBER' [ RunTime:0.0045s ]
+SQL: UPDATE `lzm_config` SET `value`='1240876905@qq.com' WHERE `name` = 'ADMIN_EMAIL' [ RunTime:0.0035s ]
+SQL: UPDATE `lzm_config` SET `value`='爵特猛个人博客' WHERE `name` = 'WEB_NAME' [ RunTime:0.0043s ]
+SQL: UPDATE `lzm_config` SET `value`='爵特猛,帅白,技术博客,个人博客,lzm，李正猛' WHERE `name` = 'WEB_KEYWORDS' [ RunTime:0.0033s ]
+SQL: UPDATE `lzm_config` SET `value`='爵特猛的个人技术博客,lzm官方网站，南宁PHP程序员，南宁猿' WHERE `name` = 'WEB_DESCRIPTION' [ RunTime:0.0037s ]
+SQL: UPDATE `lzm_config` SET `value`='爵特猛' WHERE `name` = 'AUTHOR' [ RunTime:0.0045s ]
+SQL: UPDATE `lzm_config` SET `value`='本文为爵特猛原创文章,转载无需和我联系,但请注明来自爵特猛博客lizhengmeng.club' WHERE `name` = 'COPYRIGHT_WORD' [ RunTime:0.0039s ]
+SQL: UPDATE `lzm_config` SET `value`='爵特猛' WHERE `name` = 'IMAGE_TITLE_ALT_WORD' [ RunTime:0.0036s ]
+SQL: UPDATE `lzm_config` SET `value`='1' WHERE `name` = 'WATER_TYPE' [ RunTime:0.0067s ]
+SQL: UPDATE `lzm_config` SET `value`='www.lizhengmeng.club' WHERE `name` = 'TEXT_WATER_WORD' [ RunTime:0.0049s ]
+SQL: UPDATE `lzm_config` SET `value`='./Public/static/font/ariali.ttf' WHERE `name` = 'TEXT_WATER_TTF_PTH' [ RunTime:0.0045s ]
+SQL: UPDATE `lzm_config` SET `value`='15' WHERE `name` = 'TEXT_WATER_FONT_SIZE' [ RunTime:0.0036s ]
+SQL: UPDATE `lzm_config` SET `value`='#5ea8fb' WHERE `name` = 'TEXT_WATER_COLOR' [ RunTime:0.0035s ]
+SQL: UPDATE `lzm_config` SET `value`='0' WHERE `name` = 'TEXT_WATER_ANGLE' [ RunTime:0.0034s ]
+SQL: UPDATE `lzm_config` SET `value`='9' WHERE `name` = 'TEXT_WATER_LOCATE' [ RunTime:0.0033s ]
+SQL: UPDATE `lzm_config` SET `value`='./Upload/image/logo/logo.png' WHERE `name` = 'IMAGE_WATER_PIC_PTAH' [ RunTime:0.0036s ]
+SQL: UPDATE `lzm_config` SET `value`='9' WHERE `name` = 'IMAGE_WATER_LOCATE' [ RunTime:0.0033s ]
+SQL: UPDATE `lzm_config` SET `value`='50' WHERE `name` = 'IMAGE_WATER_ALPHA' [ RunTime:0.0034s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'QQ_APP_ID' [ RunTime:0.0046s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'QQ_APP_KEY' [ RunTime:0.0038s ]
+SQL: UPDATE `lzm_config` SET `value`='2214965598' WHERE `name` = 'SINA_API_KEY' [ RunTime:0.0044s ]
+SQL: UPDATE `lzm_config` SET `value`='0db7c19eace92d66787ea248c62e6725' WHERE `name` = 'SINA_SECRET' [ RunTime:0.0065s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'DOUBAN_API_KEY' [ RunTime:0.0045s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'DOUBAN_SECRET' [ RunTime:0.0036s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'RENREN_API_KEY' [ RunTime:0.0038s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'RENREN_SECRET' [ RunTime:0.0042s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'KAIXIN_API_KEY' [ RunTime:0.0037s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'KAIXIN_SECRET' [ RunTime:0.0042s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'GITHUB_CLIENT_ID' [ RunTime:0.0044s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'GITHUB_CLIENT_SECRET' [ RunTime:0.0056s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'SOHU_API_KEY' [ RunTime:0.0035s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'SOHU_SECRET' [ RunTime:0.0038s ]
+SQL: UPDATE `lzm_config` SET `value`='http://data.zz.baidu.com/urls?site=www.lizhengmeng.club&amp;token=C5mkqCDAkColc1am' WHERE `name` = 'BAIDU_SITE_URL' [ RunTime:0.0056s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'WEB_STATISTICS' [ RunTime:0.0051s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'EMAIL_SMTP' [ RunTime:0.0035s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'EMAIL_USERNAME' [ RunTime:0.0038s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'EMAIL_PASSWORD' [ RunTime:0.0035s ]
+SQL: UPDATE `lzm_config` SET `value`='' WHERE `name` = 'EMAIL_FROM_NAME' [ RunTime:0.0039s ]
+SQL: UPDATE `lzm_config` SET `value`='1' WHERE `name` = 'COMMENT_REVIEW' [ RunTime:0.0034s ]
+SQL: UPDATE `lzm_config` SET `value`='0' WHERE `name` = 'COMMENT_SEND_EMAIL' [ RunTime:0.0036s ]
+SQL: UPDATE `lzm_config` SET `value`='1240876905@qq.com' WHERE `name` = 'EMAIL_RECEIVE' [ RunTime:0.0040s ]
+NOTIC: [8] Undefined index: CHANGYAN_COMMENT /data/home/bxu2713680059/htdocs/blog/Application/Common/Model/ConfigModel.class.php 第 26 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000143s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007341s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007392s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000240s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000296s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000728s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000777s ]
+
+[ 2018-03-30T00:21:48+08:00 ] 59.51.81.136 /blog/index.php/Admin/Config/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000416s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000568s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000623s ]
+SQL: SHOW COLUMNS FROM `lzm_config` [ RunTime:0.0017s ]
+SQL: SELECT `name`,`value` FROM `lzm_config`  [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000190s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000283s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018924s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019004s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000307s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000344s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000607s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000652s ]
+
+[ 2018-03-30T00:21:51+08:00 ] 59.51.81.136 /blog/index.php/Admin/Config/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000428s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000509s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000573s ]
+SQL: SHOW COLUMNS FROM `lzm_config` [ RunTime:0.0018s ]
+SQL: SELECT `name`,`value` FROM `lzm_config`  [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000202s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000280s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019202s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019252s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000230s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000266s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000564s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000609s ]
+
+[ 2018-03-30T00:21:52+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000436s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000592s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000644s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000120s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010063s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010125s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000320s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000369s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000624s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000672s ]
+
+[ 2018-03-30T00:21:53+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000389s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000559s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000617s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 LIMIT 1   [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 ORDER BY addtime desc LIMIT 0,15   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '25'  [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0015s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 25 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0016s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '24'  [ RunTime:0.0014s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 24 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '23'  [ RunTime:0.0014s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 23 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000062s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000113s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010963s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011143s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000391s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000474s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000647s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000701s ]
+
+[ 2018-03-30T00:21:55+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000447s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000694s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0018s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000126s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011263s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011329s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000281s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000635s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000685s ]
+
+[ 2018-03-30T00:21:59+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000558s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000582s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000655s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0018s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 ORDER BY addtime desc LIMIT 0,15   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '25'  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0013s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 25 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0014s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '24'  [ RunTime:0.0012s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 24 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '23'  [ RunTime:0.0013s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 23 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000129s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011954s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012036s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000258s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000294s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000645s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000716s ]
+
+[ 2018-03-30T00:22:02+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/25.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000454s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000574s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000630s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `lzm_article` WHERE `aid` = 25 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SELECT `tid` FROM `lzm_article_tag` WHERE `aid` = 25  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '25'  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0015s ]
+SQL: SELECT `cid`,`cid`,`cname`,`keywords` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000096s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000150s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011767s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011816s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000266s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000303s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000671s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000717s ]
+
+[ 2018-03-30T00:22:12+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000455s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000603s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000656s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 ORDER BY addtime desc LIMIT 0,15   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '25'  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0016s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 25 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0016s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '24'  [ RunTime:0.0014s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 24 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '23'  [ RunTime:0.0014s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 23 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000064s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000144s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011920s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011975s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000260s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000296s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000588s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000648s ]
+
+[ 2018-03-30T00:22:31+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/24.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000433s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000579s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000630s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `lzm_article` WHERE `aid` = 24 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT `tid` FROM `lzm_article_tag` WHERE `aid` = 24  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '24'  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0015s ]
+SQL: SELECT `cid`,`cid`,`cname`,`keywords` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000130s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010906s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010959s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000249s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000284s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000616s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000662s ]
+
+[ 2018-03-30T00:22:34+08:00 ] 101.71.55.90 /blog/index.php/Admin/Admin/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000442s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000568s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000621s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0014s ]
+
+[ 2018-03-30T00:22:43+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/24.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000450s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000706s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000778s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0024s ]
+SQL: UPDATE `lzm_article` SET `aid`='24',`cid`='30',`title`='apache开启页面压缩',`author`='爵特猛',`keywords`='',`description`='检测压缩网址：http://tool.chinaz.com/Gzips/1. 开启这里两个模块  LoadModule deflate_module modules/mod_deflate.so  LoadModule headers_module modules/mod_headers.so2.httpd.conf添加这段代码  &lt;IfModule defla',`is_original`='1',`is_top`='0',`is_show`='1',`content`='&lt;p&gt;检测压缩网址：http://tool.chinaz.com/Gzips/&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;1. 开启这里两个模块&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp; LoadModule deflate_module modules/mod_deflate.so&lt;/p&gt;&lt;p&gt;&amp;nbsp; LoadModule headers_module modules/mod_headers.so&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;2.httpd.conf添加这段代码&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;lt;IfModule deflate_module&amp;gt; &amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; #必须的，就像一个开关一样，告诉apache对传输到浏览器的内容进行压缩 &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; SetOutputFilter DEFLATE &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; #压缩级别，1-9，9为最高 &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; DeflateCompressionLevel 3 &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; #不进行压缩的文件 &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; SetEnvIfNoCase Request_URI \\.(?:gif|jpe?g|png)$ no-gzip dont-vary #设置不对后缀gif，jpg，jpeg，png的图片文件进行压缩 &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; SetEnvIfNoCase Request_URI \\.(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary #同上，就是设置不对exe，tgz，gz。。。的文件进行压缩 &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; SetEnvIfNoCase Request_URI \\.(?:pdf|mov|avi|mp3|mp4|rm)$ no-gzip dont-vary &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; #针对代理服务器的设置 &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;lt;IfModule headers_moudle&amp;gt; &amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; Header append vary User-Agent &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp; &amp;lt;/IfModule&amp;gt; &amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;lt;/IfModule&amp;gt; &amp;nbsp;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/blog/Upload/image/ueditor/20180330/1522340559877632.png&quot; title=&quot;爵特猛&quot; alt=&quot;爵特猛&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;' WHERE `aid` = 24 [ RunTime:0.0061s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: DELETE FROM `lzm_article_tag` WHERE `aid` = 24 [ RunTime:0.0035s ]
+SQL: INSERT INTO `lzm_article_tag` (`aid`,`tid`) VALUES ('24','21') [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0015s ]
+SQL: DELETE FROM `lzm_article_pic` WHERE `aid` = 24 [ RunTime:0.0059s ]
+SQL: INSERT INTO `lzm_article_pic` (`aid`,`path`) VALUES ('24','/Upload/image/ueditor/20180330/1522340559877632.png') [ RunTime:0.0048s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000066s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000131s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007467s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007515s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000249s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000284s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000646s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000727s ]
+
+[ 2018-03-30T00:22:45+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/24.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000458s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000642s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000712s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `lzm_article` WHERE `aid` = 24 LIMIT 1   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT `tid` FROM `lzm_article_tag` WHERE `aid` = 24  [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '24'  [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0016s ]
+SQL: SELECT `cid`,`cid`,`cname`,`keywords` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000120s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011445s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011500s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000361s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000594s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000640s ]
+
+[ 2018-03-30T00:22:47+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000462s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000615s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000669s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 ORDER BY addtime desc LIMIT 0,15   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '25'  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0015s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 25 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0015s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '24'  [ RunTime:0.0012s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 24 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '23'  [ RunTime:0.0013s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 23 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000089s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000141s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010849s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010901s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000264s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000299s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000625s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000678s ]
+
+[ 2018-03-30T00:22:49+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/23.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000435s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000676s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `lzm_article` WHERE `aid` = 23 LIMIT 1   [ RunTime:0.0022s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT `tid` FROM `lzm_article_tag` WHERE `aid` = 23  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '23'  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0015s ]
+SQL: SELECT `cid`,`cid`,`cname`,`keywords` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000127s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012435s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012496s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000303s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000353s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000657s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000702s ]
+
+[ 2018-03-30T00:22:52+08:00 ] 101.71.55.125 /blog/index.php/Admin/Article/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000554s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000612s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000679s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0014s ]
+
+[ 2018-03-30T00:22:57+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/23.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000441s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000593s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000647s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: UPDATE `lzm_article` SET `aid`='23',`cid`='30',`title`='Apache设置禁止通过IP访问网站',`author`='爵特猛',`keywords`='Apache，IP，访问网站',`description`='在Apache配置文件中设置    NameVirtualHost 127.0.0.1    ## 这里假设要禁止的ip为127.0.0.1    &lt;VirtualHost 122.10.94.86&gt;      &amp;nb',`is_original`='1',`is_top`='0',`is_show`='1',`content`='&lt;p&gt;在Apache配置文件中设置&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;NameVirtualHost 127.0.0.1&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;## 这里假设要禁止的ip为127.0.0.1&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;lt;VirtualHost 127.0.0.1&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ServerName 127.0.0.1&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;Location /&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Order Allow,Deny&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Deny from all&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;/Location&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;lt;/VirtualHost&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;## 实现拒绝直接通过127.0.0.1这个IP的任何访问请求，这时如果你用127.0.0.1访问，会提示拒绝访问##&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;lt;VirtualHost 127.0.0.1&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; DocumentRoot &amp;quot;D:/BMW/wwwrootBMW&amp;quot;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ServerName www.servername.com&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;lt;/VirtualHost&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;## 允许通过www.servername.com这个域名访问，主目录指向D:/BMW/wwwrootBMW&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/blog/Upload/image/ueditor/20180330/1522340575707411.png&quot; title=&quot;爵特猛&quot; alt=&quot;爵特猛&quot;/&gt;&lt;/p&gt;' WHERE `aid` = 23 [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: DELETE FROM `lzm_article_tag` WHERE `aid` = 23 [ RunTime:0.0035s ]
+SQL: INSERT INTO `lzm_article_tag` (`aid`,`tid`) VALUES ('23','21') [ RunTime:0.0032s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0017s ]
+SQL: DELETE FROM `lzm_article_pic` WHERE `aid` = 23 [ RunTime:0.0042s ]
+SQL: INSERT INTO `lzm_article_pic` (`aid`,`path`) VALUES ('23','/Upload/image/ueditor/20180330/1522340575707411.png') [ RunTime:0.0127s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000051s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000098s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007494s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007542s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000291s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000329s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000692s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000741s ]
+
+[ 2018-03-30T00:22:58+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/23.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000475s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000554s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000606s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `lzm_article` WHERE `aid` = 23 LIMIT 1   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT `tid` FROM `lzm_article_tag` WHERE `aid` = 23  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '23'  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0016s ]
+SQL: SELECT `cid`,`cid`,`cname`,`keywords` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000122s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011904s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011970s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000250s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000642s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000688s ]
+
+[ 2018-03-30T00:23:31+08:00 ] 101.71.55.90 /blog/index.php/Admin/Article/edit/aid/24.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000408s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000622s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000677s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0014s ]
+
+[ 2018-03-30T00:23:49+08:00 ] 101.71.55.95 /blog/index.php/Admin/Article/edit/aid/23.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000484s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000642s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000701s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0013s ]
+
+[ 2018-03-30T00:24:18+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000535s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000587s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 ORDER BY addtime desc LIMIT 0,15   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '25'  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0015s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 25 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0016s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '24'  [ RunTime:0.0014s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 24 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '23'  [ RunTime:0.0013s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 23 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000071s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000147s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011162s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011217s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000243s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000283s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000715s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000772s ]
+
+[ 2018-03-30T00:24:21+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/25.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000516s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000568s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `lzm_article` WHERE `aid` = 25 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT `tid` FROM `lzm_article_tag` WHERE `aid` = 25  [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '25'  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0042s ]
+SQL: SELECT `cid`,`cid`,`cname`,`keywords` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000127s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011930s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011978s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000239s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000275s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000658s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000758s ]
+
+[ 2018-03-30T00:24:32+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/25.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000440s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000680s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000761s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0018s ]
+SQL: UPDATE `lzm_article` SET `aid`='25',`cid`='30',`title`='MySQL主从复制',`author`='爵特猛',`keywords`='主从复制，MySQL',`description`='MySQL主从复制，同步数据库',`is_original`='1',`is_top`='1',`is_show`='1',`content`='&lt;p&gt;主服务器A:192.168.0.1&lt;br/&gt;&lt;br/&gt;从服务器B:192.168.0.2&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;在主服务器新建一个从账号锁定IP&lt;br/&gt;GRANT REPLICATION SLAVE,RELOAD,SUPER ON *.* TO backup@&amp;#39;192.168.0.2&amp;#39; IDENTIFIED BY &amp;#39;q123456&amp;#39;;&lt;br/&gt;//账户名：backup，指定客户端：192.168.0.2，密码：q123456&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;更新sql数据库&lt;br/&gt;mysql mysql -u&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;在从服务器上运行测试是否能登陆主服务器&lt;br/&gt;F:\\phpStudy\\MySQL\\bin\\mysql -h192.168.0.1 -ubackup -pq123456;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;对主服务器的配置进行修改，&lt;br/&gt;打开mysql/my.ini文件，在[mysqld]下面添加如下内容：&lt;br/&gt;server-id=1&lt;br/&gt;log-bin=&amp;quot;D:/phpStudy/MySQL/log/log-bin.log&amp;quot;&lt;br/&gt;binlog-do-db =&amp;quot;slsix&amp;quot;&lt;br/&gt;binlog-ignore-db=&amp;quot;mysql&amp;quot;&lt;br/&gt;expire_logs_days = 2&amp;nbsp; //超过两天的二进制日志会被自动删除&lt;br/&gt;（&amp;nbsp;&amp;nbsp; &amp;nbsp;主：binlog-do-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可&lt;br/&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;主：binlog-ignore-db=不需要复制的数据库苦命，如果复制多个数据库，重复设置这个选项即可&lt;br/&gt;）&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;A查看主服务器的状态&lt;br/&gt;mysql&amp;gt;show master status;&lt;br/&gt;&lt;br/&gt;log-bin.000001 |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 107 | demo&lt;br/&gt;&lt;br/&gt;对B服 务器的配置进行修改，&lt;br/&gt;打开mysql/my.ini文件，在[mysqld]下面添加如下内容：&lt;br/&gt;server-id = 2&lt;br/&gt;replicate-do-db =&amp;quot;slsix&amp;quot;&lt;br/&gt;（&amp;nbsp;&amp;nbsp; &amp;nbsp;从：replicate-do-db=需要复制的数据库名，如果复制多个数据库，重复设置这个选项即可&lt;br/&gt;&amp;nbsp;&amp;nbsp; &amp;nbsp;从：replicate-ignore-db=不需要复制的数据库名，如果要忽略多个数据库，重复设置这个选项即可&lt;br/&gt;）&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;B停止slave的服务!!!!!&lt;br/&gt;mysql&amp;gt;stop slave;&lt;br/&gt;&lt;br/&gt;配置从服务器Slave：&lt;br/&gt;&amp;nbsp;&amp;nbsp; mysql&amp;gt;change master to master_host=&amp;#39;192.168.0.1&amp;#39;,master_user=&amp;#39;backup&amp;#39;,master_password=&amp;#39;q123456&amp;#39;,&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; master_log_file=&amp;#39;log-bin.000001&amp;#39;,master_log_pos=107;&amp;nbsp;&amp;nbsp; //注意不要断开，107数字前后无单引号。&lt;br/&gt;&lt;br/&gt;//B启动同步数据库的线程&lt;br/&gt;mysql&amp;gt;start slave;&lt;br/&gt;&lt;br/&gt;在B查看同步状况&lt;br/&gt;检查从服务器复制功能状态：&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp; mysql&amp;gt; show slave status\\G;&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp; *************************** 1. row ***************************&lt;br/&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Slave_IO_State: Waiting for master to send event&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Master_Host: 192.168.0.1&amp;nbsp; //主服务器地址&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Master_User: mysync&amp;nbsp;&amp;nbsp; //授权帐户名，尽量避免使用root&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Master_Port: 3306&amp;nbsp;&amp;nbsp;&amp;nbsp; //数据库端口，部分版本没有此行&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Connect_Retry: 60&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Master_Log_File: mysql-bin.000001&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Read_Master_Log_Pos: 600&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; //#同步读取二进制日志的位置，大于等于Exec_Master_Log_Pos&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Relay_Log_File: ddte-relay-bin.000003&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Relay_Log_Pos: 251&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Relay_Master_Log_File: mysql-bin.000001&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Slave_IO_Running: Yes&amp;nbsp;&amp;nbsp;&amp;nbsp; //此状态必须YES&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Slave_SQL_Running: Yes&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; //此状态必须YES&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ......&lt;br/&gt;&lt;br/&gt;注：Slave_IO及Slave_SQL进程必须正常运行，即YES状态，否则都是错误的状态(如：其中一个NO均属错误)。&lt;img src=&quot;/blog/Upload/image/ueditor/20180330/1522340670908627.png&quot; title=&quot;爵特猛&quot; alt=&quot;爵特猛&quot;/&gt;&lt;/p&gt;' WHERE `aid` = 25 [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: DELETE FROM `lzm_article_tag` WHERE `aid` = 25 [ RunTime:0.0042s ]
+SQL: INSERT INTO `lzm_article_tag` (`aid`,`tid`) VALUES ('25','22') [ RunTime:0.0036s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0015s ]
+SQL: DELETE FROM `lzm_article_pic` WHERE `aid` = 25 [ RunTime:0.0012s ]
+SQL: INSERT INTO `lzm_article_pic` (`aid`,`path`) VALUES ('25','/Upload/image/ueditor/20180330/1522340670908627.png') [ RunTime:0.0050s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000052s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000110s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007618s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007685s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000285s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000321s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000712s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000757s ]
+
+[ 2018-03-30T00:24:33+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/edit/aid/25.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000399s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000554s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000631s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `lzm_article` WHERE `aid` = 25 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT `tid` FROM `lzm_article_tag` WHERE `aid` = 25  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '25'  [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0016s ]
+SQL: SELECT `cid`,`cid`,`cname`,`keywords` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000135s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012541s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012688s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000965s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001041s ]
+
+[ 2018-03-30T00:25:35+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000646s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000728s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000069s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000116s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009375s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009428s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000233s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000269s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000541s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000593s ]
+
+[ 2018-03-30T00:25:45+08:00 ] 59.51.81.136 /blog/index.php/Admin/Category/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000497s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000653s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000730s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000089s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000153s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009534s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009595s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000246s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000622s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000670s ]
+
+[ 2018-03-30T00:26:13+08:00 ] 59.51.81.136 /blog/index.php/Admin/Comment/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000444s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000571s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000660s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SELECT c.*,a.title,ou.nickname FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 ORDER BY date desc LIMIT 0,15   [ RunTime:0.0018s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000067s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000142s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010833s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010973s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000265s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000302s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000759s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000820s ]
+
+[ 2018-03-30T00:26:30+08:00 ] 59.51.81.136 /blog/index.php/Admin/Chat/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000482s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000574s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000646s ]
+SQL: SHOW COLUMNS FROM `lzm_chat` [ RunTime:0.0035s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000140s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008588s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008674s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000254s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000290s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000715s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000765s ]
+
+[ 2018-03-30T00:26:31+08:00 ] 59.51.81.136 /blog/index.php/Admin/Chat/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000439s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000545s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000621s ]
+SQL: SHOW COLUMNS FROM `lzm_chat` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `lzm_chat` WHERE ( is_delete=0  ) ORDER BY date desc  [ RunTime:0.0015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000124s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009499s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009564s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000243s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000277s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000666s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000716s ]
+
+[ 2018-03-30T00:26:39+08:00 ] 59.51.81.136 /blog/index.php/Admin/Recycle/article.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000427s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000589s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000642s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 1 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0015s ]
+NOTIC: [2] Invalid argument supplied for foreach() /data/home/bxu2713680059/htdocs/blog/Application/Common/Model/ArticleModel.class.php 第 247 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000127s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010751s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010847s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000343s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000381s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000657s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000721s ]
+
+[ 2018-03-30T00:26:40+08:00 ] 59.51.81.136 /blog/index.php/Admin/User/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000513s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000563s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0018s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `lzm_oauth_user` ORDER BY last_login_time desc LIMIT 0,20   [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000080s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000149s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009598s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009652s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000243s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000283s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000568s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000617s ]
+
+[ 2018-03-30T00:26:41+08:00 ] 59.51.81.136 /blog/index.php/Admin/Recycle/article.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000453s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001049s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001128s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0017s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 1 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0012s ]
+NOTIC: [2] Invalid argument supplied for foreach() /data/home/bxu2713680059/htdocs/blog/Application/Common/Model/ArticleModel.class.php 第 247 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000118s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008327s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008401s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000252s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000318s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000617s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000662s ]
+
+[ 2018-03-30T00:26:42+08:00 ] 59.51.81.136 /blog/index.php/Admin/Recycle/comment.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000427s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000581s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000634s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0021s ]
+SQL: SELECT COUNT(*) AS tp_count FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 1 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT c.*,a.title,ou.nickname FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 1 ORDER BY date desc LIMIT 0,15   [ RunTime:0.0015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000057s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000105s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009373s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009444s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000269s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000312s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000621s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000690s ]
+
+[ 2018-03-30T00:26:43+08:00 ] 59.51.81.136 /blog/index.php/Admin/Recycle/chat.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000402s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000603s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000683s ]
+SQL: SHOW COLUMNS FROM `lzm_chat` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_chat` WHERE ( is_delete=1  ) ORDER BY date desc  [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000055s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000109s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008967s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009023s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000274s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000310s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000616s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000664s ]
+
+[ 2018-03-30T00:26:43+08:00 ] 59.51.81.136 /blog/index.php/Admin/Recycle/link.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000466s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000648s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000787s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 1 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000077s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000148s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009042s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009141s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000287s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000324s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000703s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000762s ]
+
+[ 2018-03-30T00:26:45+08:00 ] 59.51.81.136 /blog/index.php/Admin/Recycle/comment.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000463s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000667s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000721s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 1 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT c.*,a.title,ou.nickname FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 1 ORDER BY date desc LIMIT 0,15   [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000123s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009176s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009252s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000291s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000335s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000706s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000777s ]
+
+[ 2018-03-30T00:26:45+08:00 ] 101.71.55.146 /blog/index.php/Admin/Category/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000422s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000862s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000951s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0018s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0013s ]
+
+[ 2018-03-30T00:27:30+08:00 ] 101.71.55.90 /blog/index.php/Admin/Chat/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000522s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000589s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0013s ]
+
+[ 2018-03-30T00:27:31+08:00 ] 101.71.55.125 /blog/index.php/Admin/Chat/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000407s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000755s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000830s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0013s ]
+
+[ 2018-03-30T00:27:39+08:00 ] 101.71.55.95 /blog/index.php/Admin/Recycle/article.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000552s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000590s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000664s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0014s ]
+
+[ 2018-03-30T00:27:40+08:00 ] 101.71.55.95 /blog/index.php/Admin/User/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000404s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000688s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000740s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0018s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0012s ]
+
+[ 2018-03-30T00:27:42+08:00 ] 101.71.55.146 /blog/index.php/Admin/Recycle/comment.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000439s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000526s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000580s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0014s ]
+
+[ 2018-03-30T00:27:43+08:00 ] 101.71.55.110 /blog/index.php/Admin/Recycle/link.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000501s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000574s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000647s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0014s ]
+
+[ 2018-03-30T00:27:43+08:00 ] 101.71.55.115 /blog/index.php/Admin/Recycle/chat.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000505s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000621s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000676s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0016s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0012s ]
+
+[ 2018-03-30T00:47:44+08:00 ] 59.51.81.136 /blog/index.php/Admin/Comment/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000391s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000525s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000578s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SELECT c.*,a.title,ou.nickname FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 ORDER BY date desc LIMIT 0,15   [ RunTime:0.0018s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000085s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000261s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010825s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010900s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000722s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000773s ]
+
+[ 2018-03-30T10:28:15+08:00 ] 59.51.81.136 /blog/Admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000454s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000738s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000163s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013270s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013341s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000266s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000327s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000621s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000669s ]
+
+[ 2018-03-30T10:28:15+08:00 ] 59.51.81.136 /blog/index.php/Admin/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000596s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000671s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 1 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_show` = 0 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `lzm_chat` [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_chat` LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_chat` WHERE `is_delete` = 1 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_chat` WHERE `is_show` = 0 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_comment` LIMIT 1   [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000069s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000131s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008422s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008634s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000400s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000459s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000806s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000859s ]
+
+[ 2018-03-30T10:28:25+08:00 ] 59.51.81.136 /blog/index.php/Admin/Comment/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000471s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000667s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000721s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0021s ]
+SQL: SELECT COUNT(*) AS tp_count FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 LIMIT 1   [ RunTime:0.0016s ]
+SQL: SELECT c.*,a.title,ou.nickname FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 ORDER BY date desc LIMIT 0,15   [ RunTime:0.0017s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000064s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000135s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011363s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011431s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000345s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000400s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000703s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000779s ]
+
+[ 2018-03-30T10:28:27+08:00 ] 59.51.81.136 /blog/index.php/Admin/Chat/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000442s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000576s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000630s ]
+SQL: SHOW COLUMNS FROM `lzm_chat` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `lzm_chat` WHERE ( is_delete=0  ) ORDER BY date desc  [ RunTime:0.0015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000064s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000136s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010241s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010303s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000263s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000343s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000681s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000731s ]
+
+[ 2018-03-30T10:28:29+08:00 ] 59.51.81.136 /blog/index.php/Admin/Chat/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000493s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000597s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000656s ]
+SQL: SHOW COLUMNS FROM `lzm_chat` [ RunTime:0.0022s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000271s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008191s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008277s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000291s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000330s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000761s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000833s ]
+
+[ 2018-03-30T10:28:31+08:00 ] 59.51.81.136 /blog/index.php/Admin/Comment/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000459s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000625s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000678s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT c.*,a.title,ou.nickname FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 ORDER BY date desc LIMIT 0,15   [ RunTime:0.0016s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000132s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012434s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012496s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000266s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000308s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000612s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000660s ]
+
+[ 2018-03-30T10:28:37+08:00 ] 59.51.81.136 /blog/index.php/Admin/Recycle/article.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000426s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000530s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000612s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0018s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 1 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0014s ]
+NOTIC: [2] Invalid argument supplied for foreach() /data/home/bxu2713680059/htdocs/blog/Application/Common/Model/ArticleModel.class.php 第 247 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000060s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000113s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010431s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010504s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000292s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000330s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000657s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000702s ]
+
+[ 2018-03-30T10:28:39+08:00 ] 59.51.81.136 /blog/index.php/Admin/User/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000438s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000606s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000663s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0026s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_oauth_user` ORDER BY last_login_time desc LIMIT 0,20   [ RunTime:0.0015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000060s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000120s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010156s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010212s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000262s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000303s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000637s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000683s ]
+
+[ 2018-03-30T10:28:40+08:00 ] 59.51.81.136 /blog/index.php/Admin/Admin/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000518s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000709s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000765s ]
+SQL: SHOW COLUMNS FROM `lzm_admin` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `lzm_admin`  [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000064s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000129s ]
+NOTIC: [8] Undefined index: is_admin /data/home/bxu2713680059/htdocs/blog/Runtime/Cache/Admin/4d8324af19d98ad4d454de3b3e0d7e82.php 第 35 行.
+NOTIC: [8] Undefined index: is_admin /data/home/bxu2713680059/htdocs/blog/Runtime/Cache/Admin/4d8324af19d98ad4d454de3b3e0d7e82.php 第 35 行.
+NOTIC: [8] Undefined variable: page /data/home/bxu2713680059/htdocs/blog/Runtime/Cache/Admin/4d8324af19d98ad4d454de3b3e0d7e82.php 第 40 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010644s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010728s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000264s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000300s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000835s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000928s ]
+
+[ 2018-03-30T10:28:42+08:00 ] 59.51.81.136 /blog/index.php/Admin/Config/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000444s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000544s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000599s ]
+SQL: SHOW COLUMNS FROM `lzm_config` [ RunTime:0.0020s ]
+SQL: SELECT `name`,`value` FROM `lzm_config`  [ RunTime:0.0019s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000168s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000235s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020750s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020804s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000334s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000372s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000587s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000673s ]
+
+[ 2018-03-30T10:29:20+08:00 ] 59.51.81.136 /blog/index.php/Admin/Config/change_password.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000486s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000778s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000836s ]
+SQL: SHOW COLUMNS FROM `lzm_config` [ RunTime:0.0018s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000185s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008358s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008413s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000433s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000470s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000644s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000694s ]
+
+[ 2018-03-30T10:29:24+08:00 ] 59.51.81.136 /blog/index.php/Admin/Comment/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000448s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000623s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000683s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0018s ]
+SQL: SELECT COUNT(*) AS tp_count FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT c.*,a.title,ou.nickname FROM lzm_comment c INNER JOIN lzm_article a ON a.aid=c.aid INNER JOIN lzm_oauth_user ou ON ou.id=c.ouid  WHERE c.is_delete = 0 ORDER BY date desc LIMIT 0,15   [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000127s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011859s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011914s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000341s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000384s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000690s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000736s ]
+
+[ 2018-03-30T10:29:25+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000446s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000610s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000689s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 21 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 22 LIMIT 1   [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000131s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010339s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010401s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000248s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000283s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000609s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000672s ]
+
+[ 2018-03-30T10:29:28+08:00 ] 101.71.55.110 /blog/index.php/Admin/Chat/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000064s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000475s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000624s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000680s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0021s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0016s ]
+
+[ 2018-03-30T10:29:35+08:00 ] 59.51.81.136 /blog/index.php/Admin/Article/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000528s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000583s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0021s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 LIMIT 1   [ RunTime:0.0016s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 ORDER BY addtime desc LIMIT 0,15   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '25'  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0016s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 25 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0018s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '24'  [ RunTime:0.0014s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 24 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '23'  [ RunTime:0.0014s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 23 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 30  [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000070s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000135s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010719s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010775s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000253s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000288s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000600s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000646s ]
+
+[ 2018-03-30T10:29:37+08:00 ] 101.71.55.140 /blog/index.php/Admin/Recycle/article.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000434s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000564s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000616s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0013s ]
+
+[ 2018-03-30T10:29:41+08:00 ] 101.71.55.125 /blog/index.php/Admin/Config/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000475s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000705s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000764s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0024s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0012s ]
+
+[ 2018-03-30T10:30:20+08:00 ] 101.71.55.85 /blog/index.php/Admin/Config/change_password.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000433s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000567s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000618s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0014s ]
+
+[ 2018-03-30T10:30:24+08:00 ] 101.71.55.90 /blog/index.php/Admin/Article/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000502s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000645s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000704s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0013s ]
+

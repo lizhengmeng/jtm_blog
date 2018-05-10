@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>添加管理员</title><bootstrapcss/><icheckcss/>
+
+<style>
+    .modal-sm{
+        float: left;
+    }
+    .tishi{
+        float: left;
+        line-height: 34px;
+    }
+</style>
+
+</head>
+<body>
+<form class="form-group" action="{:U('Admin/Admin/add')}" method="post">
+    <table class="table table-bordered table-striped table-hover table-condensed">
+
+    <tr>
+        <th>
+            管理员名称
+        </th>
+        <td>
+            <input class="form-control modal-sm" type="text" name="name" placeholder="">
+            <span class="tishi">123</span>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            密码
+        </th>
+        <td>
+            <input class="form-control modal-sm" type="text" name="password">
+            <span class="tishi">123</span>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            确认密码
+        </th>
+        <td>
+            <input class="form-control modal-sm" placeholder="请重复密码" type="text" name="confirm">
+            <span class="tishi">123</span>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            邮箱
+        </th>
+        <td>
+            <input class="form-control modal-sm" placeholder="" type="text" name="email">
+            <span class="tishi">123</span>
+        </td>
+    </tr>
+    <tr>
+        <th width="80px">
+            权限角色
+        </th>
+        <td>
+            <select class="form-control modal-sm" name="rool">
+                <!-- <foreach name="allCategory" item="v">
+                <option value="{$v['cid']}">{$v['_name']}</option>
+                </foreach> -->
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            性别
+        </th>
+        <td>
+            <label><span class="inputword">男</span><input class="icheck" type="radio" name="sex" value="1" checked="checked"></label> &emsp;
+            <label><span class="inputword">女</span><input class="icheck" type="radio" name="sex" value="2"></label>&emsp;
+            <label><span class="inputword">保密</span><input class="icheck" type="radio" name="sex" value="0"></label>
+        </td>
+    </tr>
+    <tr>
+        <th>
+        </th>
+        <td>
+            <input class="btn btn-success" type="submit" value="添加管理员">
+        </td>
+    </tr>
+    </table>
+</form>
+<bootstrapjs/><icheckjs color="blue"/>
+</body>
+</html>

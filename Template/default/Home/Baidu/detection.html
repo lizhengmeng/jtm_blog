@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<include file="Public/public_head" title="人脸检测-" keywords="{$Think.config.WEB_KEYWORDS}" description="{$Think.config.WEB_DESCRIPTION}"/>
+<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bdai/css/bootstrap.min.css"> -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bdai/css/bootstrap-fileinput.css">
+</head>
+<body>
+<include file="Public/public_nav"/>
+<div class="b-h-70">
+</div>
+
+<div id="b-content" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-8">
+            <!-- 内容 -->
+            <div class="row b-one-article">
+                <div class="container">
+                    <div class="page-header" style="border-bottom:0px !important;">
+                        <h3>人脸检测</h3>
+                        <span style="font-size: 10px;">（图片文件类型支持PNG、JPG、JPEG、BMP，图片大小不超过2M）</span>
+                        <form id="uploadForm">
+                            <div class="form-group" enctype='multipart/form-data'>
+                                <div class="h4">
+                                    照片一
+                                </div>
+                                <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                    <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="__PUBLIC__/static/bdai/images/noimage.png" alt="爵特猛的小玩意儿" title="爵特猛博客" />
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                    <div>
+                                        <span class="btn btn-primary btn-file">
+                                            <span class="fileinput-new">选择文件</span>
+                                            <span class="fileinput-exists">换一张</span>
+                                            <input type="file" name="face_detection" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                        </span>
+                                        <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <button id="uploadSubmit" class="btn btn-info">提交</button>
+                    </div>
+
+                    <div class="result col-lg-8" style="display: none;">
+                        <div>
+                            识别的人脸数:<span class="result_num"><?=round($res['result_num'])?></span>
+                        </div>
+                        <table class="table" width="800px" border="1px solid #000" cellspacing="1" cellpadding="1">
+                            <thead>
+                                <tr>
+                                    <th>年龄</th>
+                                    <th>颜值评分</th>
+                                    <th>性别</th>
+                                    <th>表情</th>
+                                    <th>是否戴眼镜</th>
+                                    <th>人种</th>
+                                    <th>脸型</th>
+                                </tr>
+                            </thead>
+                            <tbody id="face_info">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="msg" style="display: none;">
+                        图片错误
+                    </div>
+                    <div class="loading col-lg-8" style="display: none;color:#00b271;">
+                        正在抓紧扫描图片中，请稍等~
+                    </div>
+                </div>
+                <script src="__PUBLIC__/static/bdai/js/jquery.min.js"></script>
+                <script src="__PUBLIC__/static/bdai/js/bootstrap-fileinput.js"></script>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#uploadSubmit').click(function(){
+                            var data = new FormData($('#uploadForm')[0]);
+                            $.ajax({
+                                url: '{:U('Home/Baidu/face_detection')}',
+                                type: 'POST',
+                                data: data,
+                                dataType: 'json',
+                                async: true,
+                                cache: true,
+                                contentType: false,
+                                processData: false,
+                                beforeSend: function () {
+                                    $(".msg").hide();
+                                    $(".result").hide();
+                                    $(".loading").show();
+                                },
+                                success: function (data) {
+                                    // console.log(data);
+                                    if(data['result_num']>0){
+                                        $('.msg').css('display','none');
+                                        $('.result').css('display','block');
+                                        $('.result_num').html(data.result_num);//识别的人脸数
+                                        var res = data.result;
+                                        var str = '',
+                                            sex = '',
+                                            expression = '',
+                                            glasses = '',
+                                            race = '',
+                                            shape_val = Array(),
+                                            shape = Array;
+                                        for( i in res){
+                                            str+='<tr>';
+                                            str+='    <td>'+Math.round(res[i]['age'])+'</td>';
+                                            str+='    <td>'+Math.round(res[i]['beauty'])+'</td>';
+
+                                            sex = res[i]['gender']=='male'?'男':'女';
+                                            str+='    <td>'+sex+'</td>';
+
+                                            switch(res[i]['expression'])
+                                            {
+                                                case 0:
+                                                  expression = '不笑';
+                                                  break;
+                                                case 1:
+                                                  expression = '微笑';
+                                                  break;
+                                                case 2:
+                                                  expression = '大笑';
+                                                  break;
+                                                default:
+                                                  expression = '未检测到表情';
+                                            }
+                                            str+='    <td>'+expression+'</td>';
+
+                                            switch(res[i]['glasses'])
+                                            {
+                                                case 0:
+                                                  glasses = '无';
+                                                  break;
+                                                case 1:
+                                                  glasses = '普通眼镜';
+                                                  break;
+                                                case 2:
+                                                  glasses = '墨镜';
+                                                  break;
+                                            }
+                                            str+='    <td>'+glasses+'</td>';
+
+                                            switch(res[i]['race'])
+                                            {
+                                                case 'yellow':
+                                                  race = '黄种人';
+                                                  break;
+                                                case 'white':
+                                                  race = '白种人';
+                                                  break;
+                                                case 'black':
+                                                  race = '黑种人';
+                                                  break;
+                                                case 'arabs':
+                                                  race = '阿拉伯人';
+                                                  break;
+                                            }
+                                            str+='    <td>'+race+'</td>';
+
+                                            for (var j = 0; j < res[i]['faceshape'].length; j++) {
+
+                                                shape_val[j] = res[i]['faceshape'][j]['probability'];
+                                                shape[j] = res[i]['faceshape'][j]['type'];
+                                            };
+                                            max = Math.max.apply(Math,shape_val);
+                                            index=-1;
+                                            for(var k=0;k<shape_val.length;k++){
+                                                if(shape_val[k]==max){
+                                                    index=k;
+                                                    break;
+                                                }
+                                            }
+                                            switch(shape[index])
+                                            {
+                                                case 'square':
+                                                  face_type = '国字型';
+                                                  break;
+                                                case 'triangle':
+                                                  face_type = '瓜子型';
+                                                  break;
+                                                case 'oval':
+                                                  face_type = '椭圆形';
+                                                  break;
+                                                case 'round':
+                                                  face_type = '圆形';
+                                                  break;
+                                                default:
+                                                  face_type = '心形';
+                                                  break;
+                                            }
+                                            str+='    <td>'+face_type+'</td>';
+                                            str+='</tr>';
+                                        }
+                                        $('#face_info').html(str);
+                                    }else{
+                                        //错误
+                                        $('.result').css('display','none');
+                                        $('.msg').css('display','block');
+                                        $('.msg').html(data.msg);
+                                        console.log(data.msg);
+                                    }
+                                },
+                                complete: function () {
+                                    $(".loading").hide();
+                                },
+                                error: function (data) {
+                                    console.log(data.status);
+                                }
+                            });
+                        });
+
+                    })
+                </script>
+            </div>
+        </div>
+        <include file="Public/public_right"/>
+    </div>
+    <div class="row">
+        <include file="Public/public_foot"/>
+    </div>
+</div>
+<include file="Public/public_login"/>
+</body>
+</html>

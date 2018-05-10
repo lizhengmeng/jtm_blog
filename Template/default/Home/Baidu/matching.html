@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<include file="Public/public_head" title="人脸对比-" keywords="{$Think.config.WEB_KEYWORDS}" description="{$Think.config.WEB_DESCRIPTION}"/>
+<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bdai/css/bootstrap.min.css"> -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bdai/css/bootstrap-fileinput.css">
+</head>
+<body>
+<include file="Public/public_nav"/>
+<div class="b-h-70">
+</div>
+
+<div id="b-content" class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-8">
+            <!-- 内容 -->
+            <div class="row b-one-article">
+                <div class="container">
+                    <div class="page-header" style="border-bottom:0px !important;">
+                        <h3>人脸对比</h3>
+                        <span style="font-size: 10px;">（图片文件类型支持PNG、JPG、JPEG、BMP，图片大小不超过2M）</span>
+                        <form id="uploadForm">
+                            <div class="form-group" enctype='multipart/form-data'>
+                                <div class="h4">
+                                    照片一
+
+                                </div>
+                                <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                                    <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="__PUBLIC__/static/bdai/images/noimage.png" alt="爵特猛的小玩意儿" title="爵特猛博客" />
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                    <div>
+                                        <span class="btn btn-primary btn-file">
+                                            <span class="fileinput-new">选择文件</span>
+                                            <span class="fileinput-exists">换一张</span>
+                                            <input type="file" name="face1" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                                        </span>
+                                        <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" enctype='multipart/form-data'>
+                                <div class="h4">
+                                    照片二
+                                </div>
+                                <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload2">
+                                    <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                                        <img id='picImg2' style="width: 100%;height: auto;max-height: 140px;" src="__PUBLIC__/static/bdai/images/noimage.png" alt="" />
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                                    <div>
+                                        <span class="btn btn-primary btn-file">
+                                            <span class="fileinput-new">选择文件</span>
+                                            <span class="fileinput-exists">换一张</span>
+                                            <input type="file" name="face2" id="picID2" accept="image/gif,image/jpeg,image/x-png"/>
+                                        </span>
+                                        <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <button id="uploadSubmit" class="btn btn-info">提交</button>
+                    </div>
+
+                    <div class="result" style="display: none;">
+                        人脸相似度
+                        <span style="font-size: 10px;">（参照：大于80%可判断为同一人）</span>：<br />
+                        <span style="font-weight: bold; color:red;" class="score"></span>
+                    </div>
+                    <div class="msg" style="display: none;">
+                        图片错误
+                    </div>
+                    <div class="loading" style="display: none;color:#00b271;">
+                        正在抓紧扫描图片中，请稍等~
+                    </div>
+                </div>
+                <script src="__PUBLIC__/static/bdai/js/jquery.min.js"></script>
+                <script src="__PUBLIC__/static/bdai/js/bootstrap-fileinput.js"></script>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#uploadSubmit').click(function () {
+                            var data = new FormData($('#uploadForm')[0]);
+                            $.ajax({
+                                url: '{:U('Home/Baidu/face_matching')}',
+                                type: 'POST',
+                                data: data,
+                                dataType: 'json',
+                                async: true,
+                                cache: true,
+                                contentType: false,
+                                processData: false,
+                                beforeSend: function () {
+                                    $(".msg").hide();
+                                    $(".result").hide();
+                                    $(".loading").show();
+                                },
+                                success: function (data) {
+                                    // console.log(data);
+                                    if(data['result_num']>0){
+                                        $('.msg').css('display','none');
+                                        $('.result').css('display','block');
+                                        var similar = Math.round(data.result[0]['score']);
+                                        $('.score').html(similar+'%');
+                                    }else{
+                                        //错误
+                                        $('.result').css('display','none');
+                                        $('.msg').css('display','block');
+                                        $('.msg').html(data.msg);
+                                        console.log(data.msg);
+                                    }
+                                },
+                                complete: function () {
+                                    $(".loading").hide();
+                                },
+                                error: function (data) {
+                                    console.log(data.status);
+                                }
+                            });
+                        });
+
+                    })
+                </script>
+            </div>
+        </div>
+        <include file="Public/public_right"/>
+    </div>
+    <div class="row">
+        <include file="Public/public_foot"/>
+    </div>
+</div>
+<include file="Public/public_login"/>
+</body>
+</html>

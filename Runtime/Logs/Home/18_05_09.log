@@ -1,0 +1,1840 @@
+[ 2018-05-09T11:20:56+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.028001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.014001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.014001s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0190s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0140s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0230s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0150s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0100s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0140s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0120s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 139 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.081005s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.081005s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.011001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.011001s ]
+
+[ 2018-05-09T11:21:22+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0050s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0040s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0010s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 139 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:21:26+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0010s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:21:27+08:00 ] 127.0.0.1 /blog/index.php?s=/chat.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0050s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_chat` [ RunTime:0.0280s ]
+SQL: SELECT * FROM `lzm_chat` WHERE ( is_delete=0 and is_show=1 ) ORDER BY date desc  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:21:29+08:00 ] 127.0.0.1 /blog/index.php?s=/Index/category/cid/28.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0050s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0010s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_category` WHERE `cid` = 28 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0050s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `cid` = 28 AND `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `cid` = 28 AND `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\ArticleModel.class.php 第 247 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:21:30+08:00 ] 127.0.0.1 /blog/index.php?s=/Index/category/cid/31.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_category` WHERE `cid` = 31 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `cid` = 31 AND `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `cid` = 31 AND `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0050s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:21:31+08:00 ] 127.0.0.1 /blog/index.php?s=/Home/Index/article/aid/3.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0050s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0060s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0050s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `cid` = 31 AND (  `is_show` = 1 ) AND (  `is_delete` = 0 ) AND `aid` > 3 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `cid` = 31 AND (  `is_show` = 1 ) AND (  `is_delete` = 0 ) AND `aid` < 3 ORDER BY aid desc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `aid` = 3 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0050s ]
+SQL: SELECT `tid` FROM `lzm_article_tag` WHERE `aid` = 3  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = 3  [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname`,`keywords` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT c.*,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.status = 1 AND c.aid = 3 AND c.pid = 0 AND c.is_delete = 0 ORDER BY date desc  [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 135 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: user_email F:\WWW\baiduAI\blog\Runtime\Cache\Home\d4c1149384e4970b24973a696680cd70.php 第 97 行.
+NOTIC: [8] Undefined variable: user_email F:\WWW\baiduAI\blog\Runtime\Cache\Home\d4c1149384e4970b24973a696680cd70.php 第 99 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.056003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.056003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:21:52+08:00 ] 127.0.0.1 /blog/index.php?s=/Index/category/cid/31.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_category` WHERE `cid` = 31 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `cid` = 31 AND `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article` WHERE `cid` = 31 AND `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:29:51+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 139 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:29:52+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0050s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/index.php?s=/Games/gobang.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\121b4a1353ea25fde4b5e49418d97ac5.php 第 48 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\121b4a1353ea25fde4b5e49418d97ac5.php 第 49 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\121b4a1353ea25fde4b5e49418d97ac5.php 第 49 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\121b4a1353ea25fde4b5e49418d97ac5.php 第 50 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\121b4a1353ea25fde4b5e49418d97ac5.php 第 51 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\121b4a1353ea25fde4b5e49418d97ac5.php 第 52 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/black.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/white.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/hover.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/hover_up.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/hover_up_left.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/hover_up_right.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/hover_left.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/hover_right.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/hover_down_right.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/black_last.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/hover_down_left.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/white_last.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:29:55+08:00 ] 127.0.0.1 /blog/img/black.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:29:58+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:38:03+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001001s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:38:11+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0010s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:38:12+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:42:48+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0010s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:42:49+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 80 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 103 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 126 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:43:02+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0010s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 139 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:44:41+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0040s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0010s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:46:03+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0060s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0010s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:46:35+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:48:01+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:49:45+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0020s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0010s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:50:39+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:51:15+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0040s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0010s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:51:47+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:56:13+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0010s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0010s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:57:26+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0100s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0100s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0050s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0010s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2018-05-09T11:58:26+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:58:28+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0010s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0040s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T11:58:56+08:00 ] 127.0.0.1 /blog/index.php?search_word=aaa
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:58:59+08:00 ] 127.0.0.1 /blog/index.php?search_word=aaa
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0030s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T11:59:46+08:00 ] 127.0.0.1 /blog/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0040s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0000s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T12:03:34+08:00 ] 127.0.0.1 /blog/index.php?s=/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0050s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0010s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT * FROM `lzm_article` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY addtime desc LIMIT 0,10   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '3'  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_pic` [ RunTime:0.0050s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 3 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0000s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `lzm_article_tag` INNER JOIN lzm_tag ON lzm_article_tag.tid=lzm_tag.tid  WHERE `aid` = '2'  [ RunTime:0.0010s ]
+SQL: SELECT `path` FROM `lzm_article_pic` WHERE `aid` = 2 ORDER BY ap_id asc LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT `cid`,`cid`,`cname` FROM `lzm_category` WHERE `cid` = 31  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant url - assumed 'url' F:\WWW\baiduAI\blog\Runtime\Cache\Home\08d30c77e78bd0ac29232fbc421b5dcd.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T12:03:36+08:00 ] 127.0.0.1 /blog/index.php?s=/chat.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_chat` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_chat` WHERE ( is_delete=0 and is_show=1 ) ORDER BY date desc  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T12:03:37+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0040s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 81 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 81 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 104 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 104 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 127 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 127 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T12:14:46+08:00 ] 127.0.0.1 /blog/index.php?s=/chat.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_chat` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_chat` WHERE ( is_delete=0 and is_show=1 ) ORDER BY date desc  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T12:14:47+08:00 ] 127.0.0.1 /blog/index.php?s=/play.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 81 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 81 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 104 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 104 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 127 行.
+NOTIC: [8] Undefined index: extend F:\WWW\baiduAI\blog\Runtime\Cache\Home\55894deab49cd29cfc85a1fa9dccf487.php 第 127 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-05-09T12:14:49+08:00 ] 127.0.0.1 /blog/index.php?s=/Baidu/detection.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0000s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0010s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0020s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\00e901f418ac816ad6a9ed93d718d96b.php 第 49 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\00e901f418ac816ad6a9ed93d718d96b.php 第 50 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\00e901f418ac816ad6a9ed93d718d96b.php 第 50 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\00e901f418ac816ad6a9ed93d718d96b.php 第 51 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\00e901f418ac816ad6a9ed93d718d96b.php 第 52 行.
+NOTIC: [8] Undefined variable: cid F:\WWW\baiduAI\blog\Runtime\Cache\Home\00e901f418ac816ad6a9ed93d718d96b.php 第 53 行.
+NOTIC: [8] Undefined variable: res F:\WWW\baiduAI\blog\Runtime\Cache\Home\00e901f418ac816ad6a9ed93d718d96b.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-05-09T12:14:56+08:00 ] 127.0.0.1 /blog/index.php?s=/Home/Baidu/face_detection.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_article` [ RunTime:0.0030s ]
+SQL: SELECT `aid`,`title` FROM `lzm_article` WHERE `is_show` = 1 AND `is_delete` = 0 AND `is_top` = 1 ORDER BY aid desc  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_comment` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT `id` FROM `lzm_oauth_user` WHERE (  is_admin )  [ RunTime:0.0010s ]
+SQL: SELECT c.content,c.date,a.title,a.aid,ou.nickname,ou.head_img FROM lzm_comment c INNER JOIN lzm_article a ON c.aid=a.aid INNER JOIN lzm_oauth_user ou ON c.ouid=ou.id  WHERE c.is_delete = 0 ORDER BY c.date desc LIMIT 20   [ RunTime:0.0000s ]
+NOTIC: [2] Invalid argument supplied for foreach() F:\WWW\baiduAI\blog\Application\Common\Model\CommentModel.class.php 第 202 行.
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given F:\WWW\baiduAI\blog\ThinkPHP\Library\Think\Upload.class.php 第 170 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+

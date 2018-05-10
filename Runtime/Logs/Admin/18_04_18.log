@@ -1,0 +1,120 @@
+[ 2018-04-18T12:29:55+08:00 ] 127.0.0.1 /blog/index.php?s=/admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0000s ]
+
+[ 2018-04-18T12:29:55+08:00 ] 127.0.0.1 /blog/index.php?s=/Admin/Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: ADMIN_PASSWORD F:\WWW\baiduAI\blog\Runtime\Cache\Admin\b891abcc3bb76636e2a96a245e9568d6.php 第 15 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2018-04-18T12:29:55+08:00 ] 127.0.0.1 /blog/index.php?s=/Admin/Login/showVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-04-18T22:29:57+08:00 ] 127.0.0.1 /blog/index.php?s=/admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0050s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0000s ]
+
+[ 2018-04-18T22:29:57+08:00 ] 127.0.0.1 /blog/index.php?s=/Admin/Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_oauth_user` [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_oauth_user` WHERE `is_admin` = 1 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined index: ADMIN_PASSWORD F:\WWW\baiduAI\blog\Runtime\Cache\Admin\b891abcc3bb76636e2a96a245e9568d6.php 第 15 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2018-04-18T22:29:58+08:00 ] 127.0.0.1 /blog/index.php?s=/Admin/Login/showVerify.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `lzm_category` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_category` ORDER BY sort  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `lzm_tag` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `lzm_tag`  [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_article_tag` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `lzm_article_tag` WHERE `tid` = 20 LIMIT 1   [ RunTime:0.0000s ]
+SQL: SHOW COLUMNS FROM `lzm_link` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `lzm_link` WHERE `is_delete` = 0 AND `is_show` = 1 ORDER BY sort  [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

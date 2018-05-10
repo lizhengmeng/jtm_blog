@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>登录后台管理系统</title><bootstrapcss/><css file="__ADMIN_CSS__/login.css"/>
+</head>
+<body>
+<form class="form-group" action="{:U('Admin/Login/login')}" method="post">
+    <div id="Login">
+        <input class="form-control modal-sm" type="password" placeholder="后台登录密码" name="ADMIN_PASSWORD" value="{$_SESSION['ADMIN_PASSWORD']}">
+        <input class="form-control modal-sm" type="text" placeholder="验证码" autocomplete="off" name="verify">
+        <img id="code" class="verify" src="{:U('Admin/Login/showVerify')}" title="点击更换" >
+        <input class="btn btn-primary submit" type="submit" value="登录">
+    </div>
+</form>
+<bootstrapjs/>
+</body>
+</html>
+
+<script type="text/javascript">
+  // 验证码生成
+  var captcha_img = $('#code');
+  var verifyimg = captcha_img.attr("src");
+  captcha_img.attr('title', '点击刷新');
+  captcha_img.click(function(){
+      //如果？第一次出现位置大于0
+      if( verifyimg.indexOf('?')>0){
+          $(this).attr("src", verifyimg+'&random='+Math.random());
+      }else{
+          $(this).attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+      }
+  });
+
+</script>
