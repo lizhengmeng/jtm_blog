@@ -1,12 +1,12 @@
 # thinkphp-bjyblog
 
 ## 链接
-- 博客：http://baijunyao.com
+- 博客：http://www.lizhengmeng.club
 - github：https://github.com/baijunyao/thinkphp-bjyblog
 - 码云：http://git.oschina.net/shuaibai123/thinkbjy
 
 ## 相关链接
-[开源项目系列之thinkphp-bjyblog博客](http://baijunyao.com/article/104)
+[开源项目系列之thinkphp-bjyblog博客](http://www.lizhengmeng.club)
 
 ## 简介
 闲暇之时使用thinkphp开发了一个个人博客用来整理技能知识；
@@ -19,7 +19,7 @@
 
 想研究支付宝、微信支付、邮件发送、短信通知验证码发送、oss云存储、融云即时通讯、友盟推送、Memcached缓存、权限管理、等更多功能的可以参考进阶版的bjyadmin https://github.com/baijunyao/thinkphp-bjyadmin
 
-下图即是使用bjyblog开发的个人博客[爵特猛博客](http://statics.baijunyao.com/images/other/thinkbjy.jpg) http://baijunyao.com
+下图即是使用bjyblog开发的个人博客[爵特猛博客](http://statics.baijunyao.com/images/other/thinkbjy.jpg) http://www.lizhengmeng.club
 
 ![Thinkbjy](http://statics.baijunyao.com/images/other/thinkbjy.jpg)
 
