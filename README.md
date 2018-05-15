@@ -10,10 +10,10 @@
 例如正确：www/;错误：www/thinkjtm/；
 2. 后台登录密码默认为admin；
 3. 如果确认开启了mod_rewrite
-请将/Application/Common/Conf/config.php中的URL_MODEL改为2以优化url
+请将/Application/Common/Conf/config.php中的URL_MODEL改为2以优化url;
 未开启路由：http://www.lizhengmeng.com/index.php/Home/Index/article/aid/60
 开启路由后：http://www.lizhengmeng.com/article/60
-4. 把根目录下的robots.txt中的http://www.lizhengmeng.com改为自己的域名；
+4. 把根目录下的robots.txt中的 www.lizhengmeng.com 改为自己的域名；
 5. 可以在用户管理中；将第三方账号标记为站长；然后后台就必须使用第三方账号登录以增强安全性；
 
 ## 针对thinkphp的改进优化；
