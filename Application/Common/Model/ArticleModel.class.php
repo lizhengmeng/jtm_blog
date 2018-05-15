@@ -335,7 +335,10 @@ class ArticleModel extends BaseModel{
             ->limit($page->firstRow.','.$page->listRows)
             ->select();
         foreach ($list as $k => $v) {
-            $list[$k]['pic_path']=D('ArticlePic')->getDataByAid($v['aid']);
+            $pic_path = D('ArticlePic')->getDataByAid($v['aid']);//获取文章图片路径
+            $root_path=rtrim($_SERVER['SCRIPT_NAME'],'/index.php');
+            //文章不存在图片时，使用默认图片作为文章封面图片
+            $list[$k]['pic_path']=$pic_path==$root_path?$pic_path.'/Upload/image/defaultPic.png':$pic_path;
             $list[$k]['url']=U('Home/Index/article/',array('search_word'=>$search_word,'aid'=>$v['aid']));
             $list[$k]['tids']=D('ArticleTag')->getDataByAid($v['aid']);
             $list[$k]['tag']=D('ArticleTag')->getDataByAid($v['aid'],'all');

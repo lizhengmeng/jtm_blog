@@ -25,7 +25,7 @@ return array(
         'use_only_cookies'  =>  0,                            //是否只开启基于cookies的session的会话方式
     ),
 //***********************************URL*************************************
-    'URL_MODEL'             =>  3,// 为了兼容性更好而设置成1 如果确认服务器开启了mod_rewrite 请设置为 2
+    'URL_MODEL'             =>  1,// 为了兼容性更好而设置成1 如果确认服务器开启了mod_rewrite 请设置为 2
     //URL访问模式,可选参数0、1、2、3,代表以下四种模式：
     // 0 (普通模式); 1 (PATHINFO 模式); 2 (REWRITE  模式); 3 (兼容模式)  默认为PATHINFO 模式
     'URL_CASE_INSENSITIVE'  =>  false,                        // 区分url大小写
